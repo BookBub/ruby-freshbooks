@@ -14,8 +14,12 @@ module FreshBooks
     def initialize(data)
       super nil
       response = data["response"]
+
+      raise ArgumentError "Got malformed XML from FreshBooks" if response.nil?
+
       response.delete "xmlns"
       @status = response.delete "status"
+
       update response
     end
 
