@@ -6,6 +6,8 @@ require 'cgi'
 module FreshBooks
   API_VERSION = '2.1'
 
+  class MalformedXmlError < StandardError; end;
+
   # provides a Hash-like response object with structure
   # isomorphic to actual xml response, slightly tidied.
   class Response < Hash
@@ -15,7 +17,7 @@ module FreshBooks
       super nil
       response = data["response"]
 
-      raise ArgumentError "Got malformed XML from FreshBooks" if response.nil?
+      raise FreshBooks::MalformedXmlError "Got malformed XML from FreshBooks" if response.nil?
 
       response.delete "xmlns"
       @status = response.delete "status"
