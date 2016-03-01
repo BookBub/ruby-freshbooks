@@ -17,7 +17,7 @@ module FreshBooks
       super nil
       response = data["response"]
 
-      raise FreshBooks::MalformedXmlError "Got malformed XML from FreshBooks" if response.nil?
+      raise FreshBooks::MalformedXmlError, "Got malformed XML from FreshBooks" if response.nil?
 
       response.delete "xmlns"
       @status = response.delete "status"
