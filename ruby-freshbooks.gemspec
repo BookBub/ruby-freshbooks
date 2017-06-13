@@ -1,3 +1,5 @@
+require "date"
+
 Gem::Specification.new do |s|
   s.name = %q{ruby-freshbooks}
   s.version = File.read(File.join(File.dirname(__FILE__),'VERSION')).chomp
